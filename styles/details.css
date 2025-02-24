@@ -1,0 +1,21 @@
+/* -----------poke spot  */
+.pokespot {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.pokespot__container {
+  width: 50%;
+}
+.pokespot__img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* -----------poke details  */
+.pokedetails {
+  padding: 2rem 1rem;
+}
