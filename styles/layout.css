@@ -2,25 +2,23 @@
 
 .root {
   width: var(--max-width);
+  height: auto;
   margin: auto;
 }
 
 .pokedex {
   width: 100%;
   border-radius: 2rem;
-  padding: 2rem;
   margin: 4rem 0;
 
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1), -10px -10px 10px whitesmoke;
 }
 
-.pokedex__grid {
-  display: flex;
-  gap: 3rem;
+.logo {
+  width: min(600px, 50vw);
+  margin: auto;
 }
-.pokedex__pokemon,
-.pokedex__info {
-  box-shadow: 12px 12px 12px var(--pokedex-red-soft) inset,
-    -10px -10px 10px whitesmoke inset;
-  border-radius: 1rem;
+.logo img {
+  width: 100%;
+  margin-bottom: -5rem;
 }

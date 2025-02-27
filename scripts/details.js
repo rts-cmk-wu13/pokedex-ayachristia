@@ -1,60 +1,101 @@
 "use strict";
-//retrieve url
-//set variable id to params.get(id)
-//retrieve id fra url
 
 let params = new URLSearchParams(window.location.search);
 console.log(params);
 let id = params.get("id");
 console.log(id);
 //retrieving layout elements for append
-let pokedexPokemon = document.querySelector(".pokedex__pokemon");
-let pokedexInfo = document.querySelector(".pokedex__info");
-//creating sections for each layout element
-let pokeSpotEl = document.createElement("section");
-pokeSpotEl.classList.add("pokespot");
-let pokeDetailsEl = document.createElement("section");
-pokeDetailsEl.classList.add("pokedetails");
+let pokedexEl = document.querySelector(".pokedex");
+let pokemonEl = document.createElement("section");
+pokemonEl.classList.add("pokemonEl");
 
 fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
   .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
+  .then((pokemon) => {
+    console.log(pokemon);
 
-    pokeSpotEl.innerHTML = `
-    <section class="pokespot__name">
-        ${data.name}
+    fetch(pokemon.species.url)
+      .then((res) => res.json())
+      .then((species) => {
+        console.log(species);
+        const flavorText = `"${species.flavor_text_entries[9]?.flavor_text}"`;
+        document.querySelector(".pokemon__flavor-text").textContent =
+          flavorText;
+      });
+
+    pokemonEl.innerHTML = `
+    <section class="pokemon__nameNum">
+        <h2>${pokemon.name}</h2>
+        <p>#${pokemon.id}</p>
     </section>
-    <div class="pokespot__container">    
-        <img class="pokespot__img pokespot__img-front" src="${data.sprites.front_shiny}" alt="${data.name}">
+
+    <section class="pokemon__image-container">
+    <div class="pokemonImages">
+            <!-- <div class="pokemonImg-container">    
+            <img class="pokemonImg pokemonImg-front" src="${
+              pokemon.sprites.other["showdown"].back_default
+            }" alt="${pokemon.name}">
+        </div> -->
+        <div class="pokemonImg-container"> 
+            <img class="pokemonImg pokemonImg-back" src="${
+              pokemon.sprites.other["dream_world"].front_default
+            }" alt="${pokemon.name}">
+        </div>
     </div>
-    <div class="pokespot__container"> 
-        <img class="pokespot__img pokespot__img-back" src="${data.sprites.back_shiny}" alt="${data.name}">
-    </div>   
-    
-    
-    <button class="pokespot__toggle-view">back view</button>
-    `;
-    pokedexPokemon.append(pokeSpotEl);
+        
+        <!-- <button class="pokespot__toggle-view">back view</button>   -->
+    </section>
 
-    function convertHeight(height) {
-      let heightDecimal = (height * 2.54) / 100;
-      let heightFormatted = heightDecimal.toFixed(2);
-      return heightFormatted;
-    }
+    <section class="pokemon__info">
+        <table class="pokemon__info-table">
+            <tr>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Abilities</th>
+            </tr>
+            <tr>
+                <td class="pokedetails__Height">
+                ${((pokemon.height * 2.54) / 100).toFixed(2)} m.
+                </td>
+                <td class="pokedetails__Weight">
+                 ${pokemon.weight / 100} kg.
+                </td>
+                <td class="pokedetails__Abilities">
+                     ${pokemon.abilities
+                       .map((ability) => {
+                         return `
+                    <p>${ability.ability.name}</p>`;
+                       })
+                       .join("")}
+                </td>
+            </tr>
+        </table>
+        
+        <section class="pokemon__details">
+            <section class="pokemon__stats">
+            ${pokemon.stats
+              .map((stat) => {
+                return `
+                <section class="pokemon__stats-row">
+                    <p class="pokemon__stats-type">${stat.stat.name}</p>
+                    <div class="pokemon__stats-data-container">
+                        <p class="pokemon__stats-data" 
+                    style="width: ${stat.base_stat}%;">${stat.base_stat}%</p>
+                </div>
+                    
+                </section>
+                `;
+              })
+              .join("")}
+            </section>
 
-    pokeDetailsEl.innerHTML = `
-    <h2 class="pokedetails__specs">Specifications</h2>
-    <p class="pokedetails__Height">Height: ${convertHeight(data.height)}m.</p>
-    <p class="pokedetails__Weight">Weight: ${data.weight / 1000}kg.</p>
-    <p class="pokedetails__Abilities">Abilities: ${data.abilities.map(
-      (ability) => {
-        return `
-        <li>${ability.ability.name}</li>
-        `;
-      }
-    )}</p>
-    <p class="pokedetails__Type"></p>
+            <section class="pokemon__flavor">
+            <p class="pokemon__flavor-text"></p>
+            </section>
+        </section>
+        
+    </section>
+
     `;
-    pokedexInfo.append(pokeDetailsEl);
+    pokedexEl.append(pokemonEl);
   });

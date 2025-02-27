@@ -5,7 +5,7 @@
 }
 
 :root {
-  --max-width: 75vw;
+  --max-width: 55vw;
   --black-tint-100: rgba(0, 0, 0, 0.1);
   --box-shadow: 0 0 6rem var(--black-tint-100);
   --color-text: rgb(45, 44, 44);
@@ -18,6 +18,6 @@
 }
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, Arial, sans-serif;
   color: var(--color-text);
 }

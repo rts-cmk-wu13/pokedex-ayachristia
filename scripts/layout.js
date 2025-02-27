@@ -5,17 +5,11 @@ divEl.classList.add("root");
 
 divEl.innerHTML = `
 <header>
-    <span>Pokedex</span>
+    <div class="logo">
+        <img src="img/International_Pokémon_logo.svg.png" alt="logo">
+    </div>
 </header>
 <main class="pokedex">
-<section class="pokedex__grid">
-    <section class="pokedex__pokemon">
-        <!-- <img src="../img/pokedex.png" alt=""> -->
-    </section>
-    <section class="pokedex__info">
-        <!-- <input type="text" id="pokemonInput" name="pokemonInput" placeholder="search for pokemon.."> -->
-    </section>
-</section>
     
 
 </main>
