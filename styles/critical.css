@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --max-width: 55vw;
+  --black-tint-100: rgba(0, 0, 0, 0.1);
+  --box-shadow: 0 0 6rem var(--black-tint-100);
+  --color-text: rgb(45, 44, 44);
+
+  /*pokedex color scheme*/
+  --pokedex-red: rgba(255, 110, 110, 255);
+  --pokedex-red-soft: rgba(255, 110, 110, 0.2);
+  --pokedex-blue: rgba(131, 199, 255, 255);
+  --pokedex-blue-soft: rgba(131, 199, 255, 0.2);
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif, Arial, sans-serif;
+  color: var(--color-text);
+}

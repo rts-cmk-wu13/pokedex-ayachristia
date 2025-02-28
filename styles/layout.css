@@ -1,0 +1,24 @@
+/* ------------- layout  */
+
+.root {
+  width: var(--max-width);
+  height: auto;
+  margin: auto;
+}
+
+.pokedex {
+  width: 100%;
+  border-radius: 2rem;
+  margin: 4rem 0;
+
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1), -10px -10px 10px whitesmoke;
+}
+
+.logo {
+  width: min(600px, 50vw);
+  margin: auto;
+}
+.logo img {
+  width: 100%;
+  margin-bottom: -5rem;
+}

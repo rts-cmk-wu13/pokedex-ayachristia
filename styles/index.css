@@ -1,0 +1,55 @@
+/* -------------search layout  */
+.pokelist {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+.pokelist article:nth-last-child(5) {
+  background-color: none;
+}
+
+.pokelist__pokemon {
+  width: 100%;
+}
+
+/* .pokelist__container-img {
+} */
+
+.pokelist__img {
+  width: 80%;
+}
+
+/* -------------pokeinput  */
+.searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--pokedex-red);
+  color: white;
+  border: none;
+  border-radius: 2rem 2rem 0 0;
+}
+
+.searchForm__Input {
+  width: min(80%, 60%);
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+
+  font-size: clamp(1.2rem, 2vw 0.7rem);
+  border: 2px solid var(--pokedex-red);
+  box-shadow: 4px 4px 4px var(--pokedex-red-soft) inset,
+    -4px -4px 4px var(--pokedex-red-soft) inset;
+  border-radius: 1rem;
+}
+
+.searchForm__Input:hover {
+  box-shadow: 2px 2px 2px var(--pokedex-blue) inset,
+    -2px -2px 4px var(--pokedex-blue) inset;
+}
+
+.searchForm__Input:focus {
+  outline: none;
+}
