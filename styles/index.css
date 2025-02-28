@@ -1,8 +1,15 @@
 /* -------------search layout  */
 .pokelist {
   width: 100%;
+  /* display: flex;
+  overflow-x: scroll; */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 2rem;
+}
+
+.pokelist::-webkit-scrollbar {
+  display: none;
 }
 
 .pokelist article:nth-last-child(5) {
