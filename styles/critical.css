@@ -20,4 +20,11 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif, Arial, sans-serif;
   color: var(--color-text);
+  background-image: linear-gradient(
+    to right,
+    #fcf8ff,
+    #f6f2ff,
+    #f2eaff,
+    #d6d6fc
+  );
 }

@@ -2,18 +2,25 @@
 
 let params = new URLSearchParams(window.location.search);
 console.log(params);
-let id = params.get("id");
-console.log(id);
+let pokeName = params.get("name");
+console.log(pokeName);
 //retrieving layout elements for append
 let pokedexEl = document.querySelector(".pokedex");
 let pokemonEl = document.createElement("section");
 pokemonEl.classList.add("pokemonEl");
 
-fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-  .then((response) => response.json())
+fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
+  .then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error("No pokemon by that name");
+    }
+  })
   .then((pokemon) => {
-    console.log(pokemon);
+    // console.log(pokemon);
 
+    //fetching quote
     fetch(pokemon.species.url)
       .then((res) => res.json())
       .then((species) => {
@@ -23,6 +30,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
           flavorText;
       });
 
+    //pokemon details
     pokemonEl.innerHTML = `
     <section class="pokemon__nameNum">
         <h2>${pokemon.name}</h2>
@@ -98,4 +106,12 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
 
     `;
     pokedexEl.append(pokemonEl);
+  })
+  .catch((error) => {
+    console.log(error);
+    pokemonEl.innerHTML = `
+    <h2>${error.message}</h2>
+    <p>Go back to the <a href="index.html">main page</a></p>`;
+
+    pokedexEl.appendChild(pokemonEl);
   });

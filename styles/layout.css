@@ -11,7 +11,14 @@
   border-radius: 2rem;
   margin: 4rem 0;
 
-  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1), -10px -10px 10px whitesmoke;
+  background-image: linear-gradient(
+    to right,
+    #fcf8ff,
+    #f6f2ff,
+    #f2eaff,
+    #d6d6fc
+  );
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1), -10px -10px 10px #f1e8ff;
 }
 
 .logo {
