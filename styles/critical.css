@@ -11,10 +11,12 @@
   --color-text: rgb(45, 44, 44);
 
   /*pokedex color scheme*/
-  --pokedex-red: rgba(255, 110, 110, 255);
-  --pokedex-red-soft: rgba(255, 110, 110, 0.2);
+  --pokedex-purple: #cdcbfd;
+  --pokedex-purple-soft: #f6f1ff;
   --pokedex-blue: rgba(131, 199, 255, 255);
   --pokedex-blue-soft: rgba(131, 199, 255, 0.2);
+  --pokedex-color-unclicked: rgb(159, 157, 157);
+  --pokedex-color-clicked: rgb(53, 52, 52);
 }
 
 body {

@@ -9,23 +9,18 @@
 .pokedex {
   width: 100%;
   border-radius: 2rem;
-  margin: 4rem 0;
 
-  background-image: linear-gradient(
-    to right,
-    #fcf8ff,
-    #f6f2ff,
-    #f2eaff,
-    #d6d6fc
-  );
+  background-image: linear-gradient(to top, #fcf8ff, #f6f2ff, #f2eaff, #d6d6fc);
   box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1), -10px -10px 10px #f1e8ff;
 }
 
 .logo {
-  width: min(600px, 50vw);
+  width: min(300px, 50vw);
+  height: min(100px, 50vw);
   margin: auto;
 }
 .logo img {
   width: 100%;
+  height: 100%;
   margin-bottom: -5rem;
 }
