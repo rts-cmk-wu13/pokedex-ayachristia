@@ -22,6 +22,51 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
   })
   .then((pokemon) => {
     console.log(pokemon);
+    //moves variabel for the moves section
+    // let moves = [];
+    pokemon.moves.forEach((move) => {
+      fetch(move.move.url)
+        .then((res) => res.json())
+        .then((move) => {
+          let movesList = pokemonEl.querySelector(".pokemon__moves-ul");
+          movesList.innerHTML += `
+          <li class="pokemon__moves-listItem" data-move="${move.name}">${move.name}</li>
+          `;
+
+          let movesListItems = pokemonEl.querySelectorAll(
+            ".pokemon__moves-listItem"
+          );
+          movesListItems.forEach((listItem) => {
+            listItem.addEventListener("click", function (event) {
+              let clickedItem = event.target.dataset.move;
+              let clickedDetails = pokemon.moves.find(
+                (move) => move.move.name == clickedItem
+              );
+              console.log(clickedDetails);
+              let moveView = pokemonEl.querySelector(".pokemon__moves-view");
+              fetch(clickedDetails.move.url)
+                .then((res) => res.json())
+                .then((details) => {
+                  moveView.innerHTML = `
+              <h2>${details.name}</h2>
+              <p>${details.power}</p>
+              <p>${details.pp}</p>
+              <p>${details.accuracy}</p>
+              <p>${details.type.name}</p>
+              <p>${details.damage_class.name}</p>
+              <p>${details.effect_entries[0].effect
+                .split(/[\n|,./]+/)[0]
+                .trim()}</p>
+
+              `;
+                  console.log(details);
+                });
+
+              // fetch(clickedDetails.url)
+            });
+          });
+        });
+    });
 
     //fetching from species to about section beneath
     fetch(pokemon.species.url)
@@ -85,14 +130,14 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
                   ".pokemon__evolution-name"
                 );
                 let evolutionImgEl = pokemonEl.querySelector(
-                  ".pokemon__evolution-img"
+                  ".pokemon__evolution-imgContainer"
                 );
 
                 if (evolutionNameEl && evolutionImgEl) {
                   evolutionNameEl.textContent = chain.name.toUpperCase();
                   evolutionImgEl.innerHTML = `
-                 <a href="detail.html?name=${chain.name}">
-                 <img src="${artworkUrl}/${evolutionId}.png" alt="${chain.name}">
+                 <a class="pokemon__evolution-link" href="detail.html?name=${chain.name}">
+                 <img class="pokemon__evolution-img" src="${artworkUrl}/${evolutionId}.png" alt="${chain.name}">
                </a>
                  `;
                 }
@@ -137,12 +182,13 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
       </section>
         
 <section class="pokemon__details">
-                       <section class="pokemon__flavor">
-                         <p class="pokemon__flavor-text"></p>
-                       </section>
+                       
 
 
         <section class="pokemon__detail-section pokemon__about">
+          <section class="pokemon__flavor">
+                         <p class="pokemon__flavor-text"></p>
+                       </section>
             <section class="pokemon__info-section">
               <table class="pokemon__info-table">
               <tr>
@@ -213,23 +259,36 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
                     <div class="pokemon__stats-data-container">
                         <p class="pokemon__stats-data" 
                     style="width: ${stat.base_stat}%;">${stat.base_stat}%</p>
-                </div>
+                    </div>
                     
                 </section>
                 `;
               })
               .join("")}
+              <h2 class="pokemon__stats-headline">Type defenses</h2>
+              <p class="pokemon__stats-para">The effectiveness of each type on ${
+                pokemon.name
+              }</p>
             </section>
 
             
          
 
           <section class="pokemon__detail-section pokemon__evolution">
+            <section class="pokemon__evolution-container">
               <h2>Evolution for <span class="pokemon__evolution-name"></span></h2>
-              <div class="pokemon__evolution-img"></div>
+              <div class="pokemon__evolution-imgContainer"></div>
+            </section>
           </section>
 
           <section class="pokemon__detail-section pokemon__moves">
+            <section class="pokemon__moves-section">
+            <section class="pokemon__moves-list">
+              <ul class="pokemon__moves-ul"></ul>
+          </section>
+          
+          <section class="pokemon__moves-view"></section>
+            </section>
           </section>
           
         

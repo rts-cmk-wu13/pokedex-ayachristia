@@ -6,7 +6,7 @@ divEl.classList.add("root");
 divEl.innerHTML = `
 <header>
     <div class="logo">
-        <img src="img/International_Pokémon_logo.svg.png" alt="logo">
+        <a href="index.html"><img src="img/International_Pokémon_logo.svg.png" alt="logo"></a>
     </div>
 </header>
 <main class="pokedex">

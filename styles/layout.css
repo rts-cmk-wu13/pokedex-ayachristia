@@ -8,6 +8,7 @@
 
 .pokedex {
   width: 100%;
+  height: max(700px, auto);
   border-radius: 2rem;
 
   background-image: linear-gradient(to top, #fcf8ff, #f6f2ff, #f2eaff, #d6d6fc);
