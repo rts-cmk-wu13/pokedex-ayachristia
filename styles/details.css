@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 2rem 0 0 0;
 }
 
 .pokemon__nameNum {
@@ -18,6 +18,9 @@
   display: flex;
   flex-direction: column;
 }
+.nameAndType__h2 {
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
+}
 .nameAndType-data {
   margin-top: 0.7rem;
   display: flex;
@@ -27,8 +30,8 @@
 }
 .nameAndType-data span {
   background-color: var(--pokedex-purple);
-  font-size: 1.1rem;
-  padding: 0.3rem 1.5rem 0.5rem 1.5rem;
+  font-size: clamp(0.6rem, 1vw, 1.1rem);
+  padding: 0.3em 1.5em 0.5em 1.5em;
   border-radius: 5rem;
 }
 
@@ -37,10 +40,12 @@
 }
 
 .pokemon__image-container {
+  z-index: 1;
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: -0.5rem;
+  margin-bottom: -1.5rem;
 }
 
 .pokemonImg-container {
@@ -55,20 +60,21 @@
 
 .pokemon__info {
   background-color: #fbf7ff;
-  border-radius: 5rem 5rem 0 0;
+  border-radius: 5rem 5rem 2rem 2rem;
   padding: 2rem 1rem;
+  width: 100%;
 }
 
 .pokemon__btns {
   display: flex;
-  gap: 2rem;
+  justify-content: space-between;
   width: 100%;
 }
 .pokemon__btn {
-  font-size: 1rem;
+  font-size: clamp(0.2rem, 2vw, 1rem);
 
-  padding: 1rem 2rem;
-  width: 25%;
+  padding: 1em 2em;
+  width: max(25%, 20%);
   border: none;
   background: none;
   color: var(--pokedex-color-unclicked);
@@ -99,7 +105,6 @@
 .pokemon__flavor {
   text-align: center;
   width: 100%;
-  font-size: clamp(0.3rem, 2vw, 1rem);
   padding: 0 1rem;
   margin: auto;
 }
@@ -108,6 +113,7 @@
   width: 70%;
 }
 .pokemon__flavor-text {
+  font-size: clamp(0.2rem, 2vw, 1rem);
   font-weight: bold;
   font-style: italic;
   color: var(--pokedex-color-clicked);
@@ -115,17 +121,25 @@
 
 .pokemon__info {
   width: 100%;
+  height: auto;
 }
 .pokemon__info-section {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   width: 100%;
-  margin: auto;
-  margin-top: 2rem;
+  margin-top: clamp(0rem, 5vw, 3rem);
 }
+
+/* ------------detail  */
 .pokemon__detail-section {
   width: 100%;
   padding: 1rem 2rem;
+}
+.pokemon__info-table th,
+.pokemon__info-table td,
+.pokemon__breeding-table th,
+.pokemon__breeding-table td {
+  font-size: clamp(0.4rem, 2vw, 1rem) !important;
 }
 .pokemon__info-table,
 .pokemon__breeding-table {
@@ -142,7 +156,7 @@
   width: 20%;
 }
 .pokemon__breeding-table th {
-  width: 50%;
+  width: min(50%, 10%);
 }
 .pokemon__info-table td,
 .pokemon__breeding-table td {
@@ -209,13 +223,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   width: 100%;
   margin: auto;
-  margin-top: 3rem;
-  margin-bottom: -5rem;
+}
+.pokemon__evolution-link {
+  text-decoration: none;
+  font-size: clamp(0.5rem, 2vw, 0.8rem);
+  color: var(--pokedex-color-clicked);
 }
 .pokemon__evolution-imgContainer {
-  width: 25%;
+  width: 40%;
+  height: auto;
+  margin: auto;
 }
 .pokemon__evolution-img {
   width: 100%;

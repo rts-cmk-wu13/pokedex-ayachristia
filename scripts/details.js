@@ -126,18 +126,29 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
               res.json().then((chain) => {
                 let evolutionId = chain.id;
 
-                let evolutionNameEl = pokemonEl.querySelector(
-                  ".pokemon__evolution-name"
-                );
-                let evolutionImgEl = pokemonEl.querySelector(
-                  ".pokemon__evolution-imgContainer"
+                let evolutionEl = pokemonEl.querySelector(
+                  ".pokemon__evolution-container"
                 );
 
-                if (evolutionNameEl && evolutionImgEl) {
-                  evolutionNameEl.textContent = chain.name.toUpperCase();
-                  evolutionImgEl.innerHTML = `
-                 <a class="pokemon__evolution-link" href="detail.html?name=${chain.name}">
-                 <img class="pokemon__evolution-img" src="${artworkUrl}/${evolutionId}.png" alt="${chain.name}">
+                if (chain.name == pokemon.name) {
+                  evolutionEl.innerHTML = `
+                  <h3>${pokemon.name} is the top revolution for this pokemon!</h3>
+                  `;
+                }
+
+                if (chain.name !== pokemon.name) {
+                  evolutionEl.innerHTML = `
+                  <a class="pokemon__evolution-link" href="detail.html?name=${
+                    chain.name
+                  }">
+                  <h2 class="pokemon__evolution-name">Evolution: ${chain.name.toUpperCase()}</h2>
+                  <div class="pokemon__evolution-imgContainer">
+                    <img class="pokemon__evolution-img" src="${artworkUrl}/${evolutionId}.png" alt="${
+                    chain.name
+                  }">
+                  </div>
+                 
+                 
                </a>
                  `;
                 }
@@ -150,7 +161,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
     pokemonEl.innerHTML = `
     <section class="pokemon__nameNum">
         <section class="nameAndType">
-        <h2>${pokemon.name}</h2>
+        <h2 class="nameAndType__h2">${pokemon.name}</h2>
             <section class="nameAndType-data">
           ${pokemon.types
             .map((type) => {
@@ -276,8 +287,6 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 
           <section class="pokemon__detail-section pokemon__evolution">
             <section class="pokemon__evolution-container">
-              <h2>Evolution for <span class="pokemon__evolution-name"></span></h2>
-              <div class="pokemon__evolution-imgContainer"></div>
             </section>
           </section>
 

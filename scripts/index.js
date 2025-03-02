@@ -65,15 +65,14 @@ function fetchPokemon(offset) {
           return ` 
       
             <article class="pokelist__pokemon">
-            <a href="detail.html?name=${pokemon.name}">
-            <p>${pokemon.name}</p>
+            <a class="pokelist__link" href="detail.html?name=${pokemon.name}">
             <div class="pokelist__container-img">
               <img src="/img/placeholder.png" class="pokelist__img" data-imagesrc="${artworkUrl}/${getIdFromPokemon(
             pokemon.url
           )}.png" alt="${pokemon.name}" class="pokelist__img">
           <!-- src="/img/placeholder.png"  data-imagesrc=""-->
             </div>
-            <h2>${pokemon.name}</h2>
+            <h2 class="pokelist__name">${pokemon.name}</h2>
         </a>
         </article>
           `;

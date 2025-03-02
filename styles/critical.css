@@ -12,9 +12,8 @@
 
   /*pokedex color scheme*/
   --pokedex-purple: #cdcbfd;
+  --pokedex-purple-dark: #b4b2dd;
   --pokedex-purple-soft: #f6f1ff;
-  --pokedex-blue: rgba(131, 199, 255, 255);
-  --pokedex-blue-soft: rgba(131, 199, 255, 0.2);
   --pokedex-color-unclicked: rgb(159, 157, 157);
   --pokedex-color-clicked: rgb(53, 52, 52);
   --pokedex-font-size: 1.1rem;
