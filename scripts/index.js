@@ -46,7 +46,7 @@ let pokemonArray = [];
 
 pokedexEl.innerHTML = `
         <form action="./detail.html" class="searchForm" autocomplete="off">
-            <input type="search" class="searchForm__Input" name="id" placeholder="search for pokemon..">
+            <input type="search" class="searchForm__Input" name="name" id="name" placeholder="search for pokemon..">
         </form>`;
 pokedexEl.append(sectionElm);
 
@@ -57,22 +57,22 @@ function fetchPokemon(offset) {
     .then((response) => response.json())
     .then((data) => {
       pokemonArray = data.results;
-      console.log(data);
+      console.log(pokemonArray);
 
       sectionElm.innerHTML += pokemonArray
         .map((pokemon) => {
+          console.log(pokemon.name);
           return ` 
       
             <article class="pokelist__pokemon">
-            <a href="detail.html?id=${getIdFromPokemon(pokemon.url)}">
-            <p>${getIdFromPokemon(pokemon.url)}</p>
+            <a class="pokelist__link" href="detail.html?name=${pokemon.name}">
             <div class="pokelist__container-img">
               <img src="/img/placeholder.png" class="pokelist__img" data-imagesrc="${artworkUrl}/${getIdFromPokemon(
             pokemon.url
           )}.png" alt="${pokemon.name}" class="pokelist__img">
           <!-- src="/img/placeholder.png"  data-imagesrc=""-->
             </div>
-            <h2>${pokemon.name}</h2>
+            <h2 class="pokelist__name">${pokemon.name}</h2>
         </a>
         </article>
           `;

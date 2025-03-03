@@ -1,20 +1,39 @@
 /* -------------search layout  */
 .pokelist {
   width: 100%;
+  margin: auto;
+  padding: 0 2rem;
+  /* display: flex;
+  overflow-x: scroll; */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 1rem;
+}
+
+.pokelist::-webkit-scrollbar {
+  display: none;
 }
 
 .pokelist article:nth-last-child(5) {
   background-color: none;
 }
 
+.pokelist__link {
+  text-decoration: none;
+  color: var(--pokedex-purple-dark);
+  text-shadow: 1px 1px 2px var(--pokedex-purple-soft);
+  text-transform: uppercase;
+}
+.pokelist__name {
+  font-size: clamp(0.3rem, 1.5vw, 1rem);
+}
+
 .pokelist__pokemon {
   width: 100%;
 }
 
-/* .pokelist__container-img {
-} */
+.pokelist__container-img {
+}
 
 .pokelist__img {
   width: 80%;
