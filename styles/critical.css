@@ -5,7 +5,7 @@
 }
 
 :root {
-  --max-width: 55vw;
+  --max-width: 80%;
   --black-tint-100: rgba(0, 0, 0, 0.1);
   --box-shadow: 0 0 6rem var(--black-tint-100);
   --color-text: rgb(45, 44, 44);

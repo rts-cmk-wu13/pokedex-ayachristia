@@ -10,13 +10,14 @@ function getIdFromPokemon(pokemonUrl) {
 
 const artworkUrl =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork";
-
+// ------------------------------------------------------------------------------------------------------------
 const options = {
   threshold: 1.0,
 };
 
 const observer = new IntersectionObserver(function (entries) {
   entries.forEach((entry) => {
+    console.log(entry.target);
     if (entry.isIntersecting) {
       currentOffset += 50;
 
@@ -28,7 +29,7 @@ const observer = new IntersectionObserver(function (entries) {
     }
   });
 }, options);
-
+// -----------------------------------------------------------------------------------------------------------------
 const imageObserver = new IntersectionObserver(function (entries) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -49,8 +50,9 @@ pokedexEl.innerHTML = `
             <input type="search" class="searchForm__Input" name="name" id="name" placeholder="search for pokemon..">
         </form>`;
 pokedexEl.append(sectionElm);
-
+// ----------------------------------------------------------------------------------------------------------------------
 let currentOffset = 0;
+// ----------------------------------------------------------------------------------------------------------------------
 
 function fetchPokemon(offset) {
   fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=50`)
@@ -78,11 +80,13 @@ function fetchPokemon(offset) {
           `;
         })
         .join("");
+      // ----------------------------------------------------------------------------------------------------------------------
+
       let observedPokemon = sectionElm.querySelector(
         "article:nth-last-child(5)"
       );
       observer.observe(observedPokemon);
-
+      // ----------------------------------------------------------------------------------------------------------------------
       let observedImages = sectionElm.querySelectorAll(".pokelist__img");
       observedImages.forEach((img) => {
         imageObserver.observe(img);
