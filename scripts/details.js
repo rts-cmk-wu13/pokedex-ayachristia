@@ -153,7 +153,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
                   evolutionEl.innerHTML = `
                   < a class="pokemon__evolution-link" href = "detail.html?name=${chain.name
                     }">
-            < h2 class= "pokemon__evolution-name" > Evolution: ${chain.name.toUpperCase()}</h2 >
+            <h2 class= "pokemon__evolution-name" > Evolution: ${chain.name.toUpperCase()}</h2>
             <div class="pokemon__evolution-imgContainer">
               <img class="pokemon__evolution-img" src="${artworkUrl}/${evolutionId}.png" alt="${chain.name
                     }">
