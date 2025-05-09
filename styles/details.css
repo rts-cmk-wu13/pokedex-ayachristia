@@ -275,12 +275,12 @@
   flex-direction: column;
   width: 50%;
 
-  box-shadow: 0 2px 2px 4px rgba(145, 110, 215, 0.522) inset;
+  box-shadow: 0 2px 2px 4px rgba(186, 171, 218, 0.522) inset;
 
   height: 200px;
   padding: 2rem;
   margin: 0 0 0 1rem;
-  
+  border-radius: 15px;
 }
 .pokemon__moves-placeholder{
   padding: 1rem;
