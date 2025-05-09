@@ -38,27 +38,40 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
           );
           movesListItems.forEach((listItem) => {
             listItem.addEventListener("click", function (event) {
+
+              movesListItems.forEach(item => {
+                item.style.fontWeight = "normal";
+              });
+
+              console.log(event.target);
+              let clickedStyle = event.target
+              if (event.target) {
+                clickedStyle.style.fontWeight = "bold"
+              }
               let clickedItem = event.target.dataset.move;
               let clickedDetails = pokemon.moves.find(
                 (move) => move.move.name == clickedItem
               );
-              console.log(clickedDetails);
               let moveView = pokemonEl.querySelector(".pokemon__moves-view");
               fetch(clickedDetails.move.url)
                 .then((res) => res.json())
                 .then((details) => {
                   moveView.innerHTML = `
               <h2>${details.name}</h2>
-              <p>${details.power}</p>
-              <p>${details.pp}</p>
-              <p>${details.accuracy}</p>
-              <p>${details.type.name}</p>
-              <p>${details.damage_class.name}</p>
-              <p>${details.effect_entries[0].effect
-                .split(/[\n|,./]+/)[0]
-                .trim()}</p>
+              <p>Power: ${details.power ? details.power : '/no info'
+                    }</p >
+              <!-- <p>${details.pp}</p> -->
+              <p>Accuracy: ${details.accuracy ? details.accuracy : '/no info'}</p>
+              <p>Type: ${details.type.name ? details.type.name : '/no info'}</p>
+              <p>Damaga class: ${details.damage_class.name ? details.damage_class.name : '/no info'}</p>
+              <p>Effect: ${details.effect_entries[0].effect
+                      .split(/[\n|,./]+/)[0]
+                      .trim() ? details.effect_entries[0].effect
+                        .split(/[\n|,./]+/)[0]
+                        .trim() : '/no info'}</p>
 
               `;
+
                   console.log(details);
                 });
 
@@ -92,19 +105,19 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
           genderPara = genderRate;
         }
         if (genderRate == 1) {
-          genderRate = `87.5% Male, 12.5% Female`;
+          genderRate = `87.5 % Male, 12.5 % Female`;
           genderPara.textContent = genderRate;
         }
         if (genderRate == 2) {
-          genderRate = `50% Male, 50% Female`;
+          genderRate = `50 % Male, 50 % Female`;
           genderPara.textContent = genderRate;
         }
         if (genderRate == 3) {
-          genderRate = `12.5% Male, 87.5% Female`;
+          genderRate = `12.5 % Male, 87.5 % Female`;
           genderPara.textContent = genderRate;
         }
         if (genderRate == 4) {
-          genderRate = `100% Female`;
+          genderRate = `100 % Female`;
           genderPara.textContent = genderRate;
         }
         //egg groups
@@ -132,25 +145,23 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 
                 if (chain.name == pokemon.name) {
                   evolutionEl.innerHTML = `
-                  <h3>${pokemon.name} is the top revolution for this pokemon!</h3>
+                <h3> ${pokemon.name} is the top revolution for this pokemon!</h3>
                   `;
                 }
 
                 if (chain.name !== pokemon.name) {
                   evolutionEl.innerHTML = `
-                  <a class="pokemon__evolution-link" href="detail.html?name=${
-                    chain.name
-                  }">
-                  <h2 class="pokemon__evolution-name">Evolution: ${chain.name.toUpperCase()}</h2>
-                  <div class="pokemon__evolution-imgContainer">
-                    <img class="pokemon__evolution-img" src="${artworkUrl}/${evolutionId}.png" alt="${
-                    chain.name
-                  }">
-                  </div>
+                  < a class="pokemon__evolution-link" href = "detail.html?name=${chain.name
+                    }">
+            < h2 class= "pokemon__evolution-name" > Evolution: ${chain.name.toUpperCase()}</h2 >
+            <div class="pokemon__evolution-imgContainer">
+              <img class="pokemon__evolution-img" src="${artworkUrl}/${evolutionId}.png" alt="${chain.name
+                    }">
+            </div>
                  
                  
-               </a>
-                 `;
+               </a >
+              `;
                 }
               })
             );
@@ -159,28 +170,27 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 
     //pokemon details
     pokemonEl.innerHTML = `
-    <section class="pokemon__nameNum">
+              <section class= "pokemon__nameNum">
         <section class="nameAndType">
         <h2 class="nameAndType__h2">${pokemon.name}</h2>
             <section class="nameAndType-data">
           ${pokemon.types
-            .map((type) => {
-              console.log(type);
-              return `
+        .map((type) => {
+          console.log(type);
+          return `
             <span>${type.type.name}</span>
             `;
-            })
-            .join(" ")}
+        })
+        .join(" ")}
             </section>
         </section>
         <p class="pokemon__id">#${pokemon.id}</p>
-  </section>
+  </section >
 
     <section class="pokemon__image-container">
         <div class="pokemonImg-container"> 
-            <img class="pokemonImg pokemonImg-back" src="${
-              pokemon.sprites.other["dream_world"].front_default
-            }" alt="${pokemon.name}">
+            <img class="pokemonImg pokemonImg-back" src="${pokemon.sprites.other["dream_world"].front_default
+      }" alt="${pokemon.name}">
         </div>
     </section>
   
@@ -222,9 +232,9 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
               </td>
               <td class="pokemon__info-abilities">
                  ${pokemon.abilities.map((ability) => {
-                   return `
+        return `
                 <p>${ability.ability.name}</p>`;
-                 })}
+      })}
               </td>
               </tr>
               </table>
@@ -247,10 +257,9 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
                         
                 <tr>
                   <th>Egg Cycle</th>
-                  <td class="pokemon__breeding-cycle">${
-                    pokemon.types[0].type.name.charAt(0).toUpperCase() +
-                    pokemon.types[0].type.name.slice(1)
-                  }
+                  <td class="pokemon__breeding-cycle">${pokemon.types[0].type.name.charAt(0).toUpperCase() +
+      pokemon.types[0].type.name.slice(1)
+      }
                   </td>
                 </tr>
                 
@@ -263,8 +272,8 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 
         <section class="pokemon__detail-section pokemon__stats">
             ${pokemon.stats
-              .map((stat) => {
-                return `
+        .map((stat) => {
+          return `
                 <section class="pokemon__stats-row">
                     <p class="pokemon__stats-type">${stat.stat.name}</p>
                     <div class="pokemon__stats-data-container">
@@ -274,12 +283,11 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
                     
                 </section>
                 `;
-              })
-              .join("")}
+        })
+        .join("")}
               <h2 class="pokemon__stats-headline">Type defenses</h2>
-              <p class="pokemon__stats-para">The effectiveness of each type on ${
-                pokemon.name
-              }</p>
+              <p class="pokemon__stats-para">The effectiveness of each type on ${pokemon.name
+      }</p>
             </section>
 
             
@@ -296,7 +304,9 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
               <ul class="pokemon__moves-ul"></ul>
           </section>
           
-          <section class="pokemon__moves-view"></section>
+          <section class="pokemon__moves-view" >
+            <p class="pokemon__moves-placeholder">Learn more about each move, pick one!</p>
+          </section>
             </section>
           </section>
           
@@ -336,8 +346,8 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
   .catch((error) => {
     console.log(error);
     pokemonEl.innerHTML = `
-    <h2>${error.message}</h2>
-    <p>Go back to the <a href="index.html">main page</a></p>`;
+            < h2 > ${error.message}</h2 >
+            <p>Go back to the <a href="index.html">main page</a></p>`;
 
     pokedexEl.appendChild(pokemonEl);
   });

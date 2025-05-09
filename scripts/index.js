@@ -29,7 +29,7 @@ const observer = new IntersectionObserver(function (entries) {
     }
   });
 }, options);
-// -----------------------------------------------------------------------------------------------------------------
+// ------------------------placeholder observer----------------------------
 const imageObserver = new IntersectionObserver(function (entries) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -69,13 +69,13 @@ function fetchPokemon(offset) {
             <article class="pokelist__pokemon">
             <a class="pokelist__link" href="detail.html?name=${pokemon.name}">
             <div class="pokelist__container-img">
-              <img src="/img/placeholder.png" class="pokelist__img" data-imagesrc="${artworkUrl}/${getIdFromPokemon(
-            pokemon.url
-          )}.png" alt="${pokemon.name}" class="pokelist__img">
-          <!-- src="/img/placeholder.png"  data-imagesrc=""-->
+              <img src="/img/placeholder.png" data-imagesrc="${artworkUrl}/${getIdFromPokemon(
+            pokemon.url)}.png" alt="${pokemon.name}" class="pokelist__img">
+            <!-- src="/img/placeholder.png"  data-imagesrc=""-->
+            <!-- <img src="actual-image.jpg" onerror="this.src='placeholder-image.jpg'" alt="Description" loading="lazy"> -->
             </div>
             <h2 class="pokelist__name">${pokemon.name}</h2>
-        </a>
+            </a>
         </article>
           `;
         })
